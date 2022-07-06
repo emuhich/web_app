@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Durger King</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="./static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+  </head>
+
+  <body>
+<script>
+    Telegram.WebApp.ready();
+</script>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div class="navbar__content">
+        <a href="demo.html"><span>Durger King</span></a>
+        <a href="cart.html">
+          <div class="cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <div class="cartCounter">0</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Shop -->
+    <section class="shop">
+      <section class="shop__grid" id="shop"></section>
+    </section>
+  </body>
+
+  <script
+    src="https://kit.fontawesome.com/602cd2a7a9.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./static/dummyData.js"></script>
+  <script src="./static/main.js"></script>
+</html>

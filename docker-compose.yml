@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  bot:
+    image: "${BOT_IMAGE_NAME:-tg_bot-image}"
+    container_name: "${BOT_CONTAINER_NAME:-tg_bot-container}"
+    stop_signal: SIGINT
+    build:
+      context: .
+    working_dir: "/usr/src/app/${BOT_NAME:-tg_bot}"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/usr/src/app/${BOT_NAME:-tg_bot}
+    command: python3 -m bot
+    restart: always
+    env_file:
+      - ".env"
+    networks:
+      - tg_bot
+
+  nginx:
+    image: nginx:1.21.3-alpine
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - bot
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
+      - ./tgbot/web_app/src:/srv/tg-bot/src/static:ro
+      - ./tgbot/web_app/images:/srv/tg-bot/src/images:ro
+    networks:
+    - tg_bot
+
+
+
+networks:
+  tg_bot:
+    driver: bridge
